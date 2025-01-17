@@ -13,6 +13,15 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+
+// Serve static files from the "public" folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Any route not handled by the API should return the index.html file
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
+
 // mongoose.connect(process.env.MONGO_URI)
 //     .then(() => console.log("MongoDB connected"))
 //     .catch(err => console.error("MongoDB connection error:", err));
