@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const today = new Date().toLocaleDateString();
     dateEl.textContent = `Today's Date: ${today}`;
 
-    const HOST="0.0.0.0";
+    //const HOST="0.0.0.0";
+    const HOST="https://attendancemanager-twilio.onrender.com/api/students";
+    
     const fetchStudents = async () => {
         try {
             const res = await fetch(`http://${HOST}:5000/api/students`);
