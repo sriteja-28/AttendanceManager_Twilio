@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const today = new Date().toLocaleDateString();
     dateEl.textContent = `Today's Date: ${today}`;
 
-    
+    const HOST="0.0.0.0";
     const fetchStudents = async () => {
         try {
-            const res = await fetch('http://localhost:5000/api/students');
+            const res = await fetch(`http://${HOST}:5000/api/students`);
             console.log('API Response Status:', res.status);
 
             if (!res.ok) {
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const status = e.target.value;
 
                 try {
-                    const res = await fetch(`http://localhost:5000/api/attendance/${id}`, {
+                    const res = await fetch(`http://${HOST}:5000/api/attendance/${id}`, {
                         method: 'PUT',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ status }),
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const sendSmsToAbsentees = async () => {
         try {
-            const res = await fetch('http://localhost:5000/api/send-sms', { method: 'POST' });
+            const res = await fetch(`http://${HOST}:5000/api/send-sms`, { method: 'POST' });
 
             if (!res.ok) {
                 throw new Error(`Failed to send SMS: ${res.statusText}`);
