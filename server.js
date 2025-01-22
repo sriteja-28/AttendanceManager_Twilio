@@ -5,7 +5,7 @@ require('dotenv').config();
 const cors = require('cors');
 const schedule = require('node-schedule');
 // const { MongoClient, ObjectId } = require('mongodb');
-const MongoClient = require('mongodb');
+const {MongoClient} = require('mongodb');
 const path = require('path');
 
 const app = express();
