@@ -4,7 +4,8 @@ const twilio = require('twilio');
 require('dotenv').config();
 const cors = require('cors');
 const schedule = require('node-schedule');
-const { MongoClient, ObjectId } = require('mongodb');
+// const { MongoClient, ObjectId } = require('mongodb');
+const MongoClient = require('mongodb');
 const path = require('path');
 
 const app = express();
@@ -88,7 +89,7 @@ app.put('/api/attendance/:id', async (req, res) => {
   const { id } = req.params;
   const { status } = req.body;
   try {
-    await studentsCollection.updateOne({ _id: new ObjectId(id) }, { $set: { status } });
+    await studentsCollection.updateOne({ _id: id}, { $set: { status } });
     res.json({ message: "Attendance updated successfully!" });
   } catch (error) {
     console.error("Error updating attendance:", error);
